@@ -35,6 +35,16 @@ git log --oneline --follow file3.txt
 
 ## git diff
 
+### コミット間のDiff
+```
+git diff <比較元コミット> <比較先コミット>
+```
+
+### コミット間のDiff(ファイル名だけ)
+```
+git diff <比較元コミット> <比較先コミット> --name-only
+```
+
 ### ステージング（インデックス）とコミットのdiff
 ```
 git diff --chached
