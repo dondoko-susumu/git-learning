@@ -1,4 +1,17 @@
-2016/04/24
+# git チートシート
+
+## git config
+
+## git alias
+```
+git config --global alias.co checkout
+git config --global alias.st status
+git config --global alias.br branch
+git config --global alias.cm commit
+git config -l
+```
+
+## git log
 
 ### 1行表示
 ```
@@ -10,7 +23,6 @@ git log --oneline
 git log -p
 ```
 
-```
 ### どのファイルが何箇所変わったかというのを見ることができます。
 ```
 git log --stat
@@ -20,6 +32,8 @@ git log --stat
 ```
 git log --oneline --follow file3.txt
 ```
+
+## git diff
 
 ### ステージング（インデックス）とコミットのdiff
 ```
@@ -31,7 +45,8 @@ git diff --chached
 git diff  比較ブランチ名 --name-only
 ```
 
-### Pull Requestで表示される差分(比較先／比較元コミットの共通の祖先　と　比較先コミット)
+### Pull Requestで表示される差分
+<比較先／比較元コミットの共通の祖先>　と　<比較先コミット>
 ```
 git diff <比較元コミット>...<比較先コミット>
 ```
