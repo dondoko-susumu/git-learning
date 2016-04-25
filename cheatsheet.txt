@@ -78,6 +78,7 @@ git diff <比較元コミット>...<比較先コミット>
 ```
 
 ### git blame
+行単位で編集者を表示
 ```
 git blame <ファイル名>
 ```
@@ -85,4 +86,14 @@ git blame <ファイル名>
 ## git branch
 
 ### ブランチの表示
+```
+git branch
+```
 
+## git merge
+
+### ブランチをマージ
+ブランチからマージしたことを明確に歴史を残すためにマージコミットを作成する
+```
+git merge --no-ff feature-A
+```
