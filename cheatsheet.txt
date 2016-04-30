@@ -17,6 +17,9 @@ git config -l
 # 1行表示
 git log --oneline
 
+# 1行表示&ファイル名の表示
+git log --oneline --name-only
+
 # コミット間の差分を表示
 git log -p
 
@@ -74,4 +77,15 @@ git branch
 # ブランチをマージ
 ブランチからマージしたことを明確に歴史を残すためにマージコミットを作成する
 git merge --no-ff feature-A
+```
+
+## git reset
+インデックスへの登録を取りやめたい（git addの反対）
+```
+git reset <paths>
+```
+
+とにかく困った.とにかくリモートリポジトリの状態に戻したい
+```
+git reset --hard origin/master
 ```
