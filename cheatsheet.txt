@@ -1,11 +1,79 @@
 # git チートシート
 
-## コミットの指定方法
-HEAD
-現在のブランチの最新コミット
-~
-他のコミット指定と組み合わせて、そのコミットの親を指定できる。数字を付けることで「何代前の親か」指定可能
+## 用語
 ```
+ワークツリー：
+インデックス（ステージ領域）：
+```
+
+## git init
+```
+■ローカルリポジトリ
+git init
+■共有リポジトリ
+git --bare init --shared
+```
+
+## git add
+```
+■deletedをaddする
+git add -u
+
+■ファイル名を大文字⇔小文字で変更したらgitに反映されない
+対応方法
+git mv(リネーム)を２回する
+
+git mv kaisetsu.php _Kaisetsu.php
+git mv _Kaisetsu.php Kaisetsu.php
+
+http://ratememo.blog17.fc2.com/blog-entry-989.html
+
+■.gitignoreを変更したのに反映されない場合の対処法
+[参考]
+http://alice345.hatenablog.com/entry/2013/09/07/001519
+
+既にコミットしたファイルを管理対象外にしたいとき
+.gitignoreに追加するが管理対象外にならない。
+
+git rm --cachedを使って，インデックスからのみ削除する．
+$ git rm -r --cached data/kaisai.csv data/kaisai_bk.csv
+```
+
+## git checkout
+```
+■ローカルの変更を元に戻すには
+まだaddすらしていない状態だけど、行った変更を取り消したい。
+git checkout ファイル名
+git checkout .
+
+[参考]
+http://keyamb.hatenablog.com/entry/2013/02/08/105556
+```
+
+## git reset
+```
+■インデックスへの登録を取りやめたい（git addの反対）
+git reset <paths>
+```
+
+```
+■とにかく困った.とにかくリモートリポジトリの状態に戻したい
+git reset --hard origin/master
+```
+
+## git remote
+```
+■リモートリポジトリの確認
+$ git remote -v
+origin  admin@ww1.boatrace-special.jp:/home/admin/git/2014TJC.git (fetch)
+origin  admin@ww1.boatrace-special.jp:/home/admin/git/2014TJC.git (push)
+```
+
+## コミットの指定方法
+```
+HEAD：現在のブランチの最新コミット
+~：他のコミット指定と組み合わせて、そのコミットの親を指定できる。数字を付けることで「何代前の親か」指定可能
+
 HEAD~：HEADの親
 HEAD~1：HEADの親(1世代前)
 HEAD~2：HEADの親の親(2世代前)
@@ -48,10 +116,10 @@ git log --oneline --follow file3.txt
 
 ```
 # ワークツリーとステージ領域の差分
-git diff
+git diff <file>
 
 # ワークツリーと最新コミットの差分(HEAD:作業しているブランチの最新のコミットを参照しているポインタ)
-git diff HEAD
+git diff HEAD <file>
 
 # ステージング（インデックス）とコミットのdiff
 git diff --chached
@@ -90,13 +158,14 @@ git branch
 git merge --no-ff feature-A
 ```
 
-## git reset
-インデックスへの登録を取りやめたい（git addの反対）
+## git pull
 ```
-git reset <paths>
-```
+■pullした時に怒られた
+error: Your local changes to 'admin/data/jyodir.sh' would be overwritten by merge.  Aborting.
+Please, commit your changes or stash them before you can merge.
 
-とにかく困った.とにかくリモートリポジトリの状態に戻したい
-```
-git reset --hard origin/master
+１つ前のコミットをpullしてなくて
+１つ前のコミットで削除したjyodir.shのファイルが存在するので
+マージしろと怒られている？
+ローカルのjyodir.shを削除して１つ前の
 ```
