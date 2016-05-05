@@ -81,6 +81,12 @@ HEAD~2：HEADの親の親(2世代前)
 
 ## git config
 
+## リモートリポジトリのURLを変更
+origin のURLを変更
+```
+git remote set-url origin git@bitbucket.org:dondoko_susumu/hogehoge.git
+```
+
 ## git alias
 ```
 git config --global alias.co checkout
