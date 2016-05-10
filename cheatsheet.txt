@@ -60,9 +60,16 @@ http://keyamb.hatenablog.com/entry/2013/02/08/105556
 ```
 ■インデックスへの登録を取りやめたい（git addの反対）
 git reset <paths>
-```
 
-```
+■最後のコミットの状態に戻したい
+ファイルをインデックスから削除し、かつ作業内容も消してしまいたい場合に使用します
+このコマンドで失われた内容はほどんとの場合元に戻すことが不可能になる
+git reset --hard
+
+■commit後、直前のコミットを取り消したい
+一度はコミットしたものの、バグやtypoを発見しコミットをしなおしたい時
+git reset --soft HEAD~
+
 ■とにかく困った.とにかくリモートリポジトリの状態に戻したい
 git reset --hard origin/master
 ```
@@ -83,6 +90,8 @@ HEAD：現在のブランチの最新コミット
 HEAD~：HEADの親
 HEAD~1：HEADの親(1世代前)
 HEAD~2：HEADの親の親(2世代前)
+
+ORIG_HEAD:git mergeやgit resetなどの操作を行うと上述のHEADが移動してしまうが、ORIG＿HEADを使うことで移動前のHEADを指定できる
 ```
 
 ## git config
@@ -243,7 +252,9 @@ topicをmasterにmergeすることで、ブランチでの作業履歴を残し�
 
 「作業中のブランチに対して他のチームメンバーによる変更があり、それをリモートリポジトリから取り込みたい」
 -> rebase
-単純に
+単純にpullしてしまうとそのブランチでの直接の作業とは言えない不必要なマージコミットが発生してしまう。
+git pull --rebaseを使う。
+
 
 ```
 
@@ -257,4 +268,40 @@ Please, commit your changes or stash them before you can merge.
 １つ前のコミットで削除したjyodir.shのファイルが存在するので
 マージしろと怒られている？
 ローカルのjyodir.shを削除して１つ前の
+```
+
+## コンフリクト
+```
+# どのファイルがコンフリクトしているのかを調べる
+git status
+
+# コンフリクトを起こしたファイルに影響を与えたコミットを探す
+git log --oneline --merge
+
+# マージの中断
+予期せずコンフリクトが発生した場合や、マージが間違っていると感じた場合は、git reset でマージを中断できる
+git reset --hard HEAD
+
+# マージの破棄
+マージしてコミットした後に、その操作をなかったことにしたい場合は、ORIG_HEADを指定してgit resetコマンドを実行します。
+git reset --hard ORIG_HEAD
+
+# リベース時のコンフリクトの解消
+git rebase topic (コンフリクト発生！)
+
+git status
+
+(コンフリクトのファイルを修正)
+git add conflict_file.txt
+
+git rebase --continue
+(これによりリベースが再開されて、以降のコミットが再配置されます)
+
+# conflictを無視してリベース
+git rebase --skip
+
+# rebase操作そのものが間違っていた場合,リベースを実行する前の状態に戻すことも可能
+git rebase --abort
+
+
 ```
