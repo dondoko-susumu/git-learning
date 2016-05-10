@@ -39,6 +39,12 @@ git rm --cachedを使って，インデックスからのみ削除する．
 $ git rm -r --cached data/kaisai.csv data/kaisai_bk.csv
 ```
 
+## git commit
+```
+■commitメッセージを修正
+git commit --amend
+```
+
 ## git checkout
 ```
 ■ローカルの変更を元に戻すには
@@ -141,6 +147,14 @@ git diff  比較ブランチ名 --name-only
 
 # Pull Requestで表示される差分(<比較先／比較元コミットの共通の祖先>　と　<比較先コミット>)
 git diff <比較元コミット>...<比較先コミット>
+```
+
+## git reflog
+
+```
+# リポジトリで行われた作業ログ
+GitのGC（Garbage Collection）が行われない限り、このログである程度歴史を行き来できる
+git reflog
 ```
 
 ## git blame
