@@ -122,6 +122,13 @@ git log --stat
 
 # リネームしたファイルの履歴まで見る
 git log --oneline --follow file3.txt
+
+#特定のAuthorのコミットだけ表示する
+git log --author <検索したい名前>
+
+#コミット履歴を文字列で検索する
+文字列が削除されたコミットでも追加されたコミットでもdiffの中に含まれれば表示されます
+git log -S "if (a="
 ```
 
 ## git diff
@@ -161,6 +168,28 @@ git reflog
 ```
 # 行単位で編集者を表示
 git blame <ファイル名>
+```
+
+## git bisect
+
+```
+不具合が混入したコミットを見つけ出す
+
+git bisect start <不具合コミット> <正常なコミット>
+
+例）
+git bisect start HEAD xxxxx
+HEADとxxxxxの真ん中にあるコミットyyyyyがgoodかbadか尋ねられる
+
+git bisect bad
+yyyyyとxxxxxの真ん中にあるコミットjjjjjがgoodかbadか尋ねられる
+
+git bisect good
+これで最初に不具合が混入したコミットを特定できる
+
+git bisect reset
+作業終了
+
 ```
 
 ## git branch
