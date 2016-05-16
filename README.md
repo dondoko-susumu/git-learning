@@ -391,7 +391,23 @@ git push -f の場合はこのチェックは行われないため、ほこの�
 ## git filter-branch --commit-filter
 ### 名前、メールアドレスを変更したい
 ```
+git filter-branch --commit-filterは、すべてのコミットに対して何らかの処理を行いたい場合に使用します。
 
+例）環境変数$GIT_AUTHOR_EMAILが特定のメールアドレスに該当するコミットのみ「名前」「メールアドレス」に関する変数を変更するコマンドです。
 
+git filter-branch -f --commit-filter '
+if [ "$GIT_AUTHOR_EMAIL" = "old@example.com" ]; then
+  GIT_AUTHOR_NAME="新しいAuthor名"
+  GIT_AUTHOR_EMAIL="new@example.com"
+  GIT_COMMITER_NAME="新しいCommiter名"
+  GIT_COMMITER_EMAIL="new@example.com"
+fi
+git commit-tree "$@"
+' HEAD
 
+※なお、filter-branchを使用する場合は、テスト用ブランチで順分確認して使うこと
+※また、--allオプションを付けるとすべてのブランチに対してfilter-branchが実行されます。
+※filter-branchは歴史を書き換えるコマンドです。また、コミットIDも変わってしまいます。
+　リモートブランチにすでにプッシュ済である場合はgit push --force-with-leaseなどで
+　強制的にプッシュしない限り反映されませんが、共用ブランチで行うのはやめたおいたほうが無難です。
 ```
