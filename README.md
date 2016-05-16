@@ -105,14 +105,12 @@ ORIG_HEAD:git mergeやgit resetなどの操作を行うと上述のHEADが移動
 
 ## git config
 
-## リモートリポジトリのURLを変更
+```
+# リモートリポジトリのURLを変更
 origin のURLを変更
-```
 git remote set-url origin git@bitbucket.org:dondoko_susumu/hogehoge.git
-```
 
-## git alias
-```
+# alias
 git config --global alias.co checkout
 git config --global alias.st status
 git config --global alias.br branch
