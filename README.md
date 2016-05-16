@@ -91,6 +91,14 @@ git reset --hard HEAD~
 git reset --hard origin/master
 ```
 
+### 削除したコミットを取り戻したい
+```
+git reflogでコミットIDが残ってるか確認
+
+git reset コマンドでHEADの位置を変更します。
+git reset --hard <コミットID>
+```
+
 ## git remote
 ```
 ■リモートリポジトリの確認
@@ -221,6 +229,14 @@ git bisect reset
 ```
 # ブランチの表示
 git branch
+```
+### どのブランチがマージされているのかを知りたい
+```
+■リモートのmasterブランチにマージされているリモートブランチの一覧を表示できます。
+git branch -r --merged origin/master
+
+■リモートのmasterブランチにまだマージされてないリモートブランチの一覧を表示できます。
+git branch -r --no-merged origin/master
 ```
 
 ## git merge
@@ -402,7 +418,8 @@ git push -f の場合はこのチェックは行われないため、ほこの�
 ```
 git filter-branch --commit-filterは、すべてのコミットに対して何らかの処理を行いたい場合に使用します。
 
-例）環境変数$GIT_AUTHOR_EMAILが特定のメールアドレスに該当するコミットのみ「名前」「メールアドレス」に関する変数を変更するコマンドです。
+例）環境変数$GIT_AUTHOR_EMAILが特定のメールアドレスに該当するコミットのみ
+　「名前」「メールアドレス」に関する変数を変更するコマンドです。
 
 git filter-branch -f --commit-filter '
 if [ "$GIT_AUTHOR_EMAIL" = "old@example.com" ]; then
@@ -419,6 +436,24 @@ git commit-tree "$@"
 ※filter-branchは歴史を書き換えるコマンドです。また、コミットIDも変わってしまいます。
 　リモートブランチにすでにプッシュ済である場合はgit push --force-with-leaseなどで
 　強制的にプッシュしない限り反映されませんが、共用ブランチで行うのはやめたおいたほうが無難です。
+```
+
+## git filter-branch --tree-filter
+### パスワードが含まれるファイル(password.txt)をコミットしてしまった
+```
+歴史から完全にpassword.txtを削除するには
+git filter-branch --tree-filterを使用します。
+すべてのツリーオブジェクトに対して処理行うことができます。
+
+例)すべてのツリーに対してrm -f password.txtを実行する
+
+git filter-branch --tree-filter 'rm -f password.txt' HEAD
+
+git log --oneline --name-only (ファイル名の確認)
+
+HEADの部分はブランチ名を指定することができます。
+(HEADはカレントブランチへの参照となっているため、ブランチの代わりに指定できます)
+
 ```
 
 ## git cherry-pick
