@@ -265,13 +265,15 @@ git pull --rebaseを使う。
 ```
 
 ## git rebase -i
+### 過去の任意のコミットを削除したい
 ```
-■過去の任意のコミットを削除したい
 (HEAD~2/最新コミットより２世代前より後のコミットを変更する)
 git rebase -i HEAD~2
 (対象となるコミットの行そのものを削除または、コメントアウトし、保存・終了)
+```
 
-■過去のコミットの内容を変更したい
+### 過去のコミットの内容を変更したい
+```
 git rebase -i HEAD~2
 変更したいコミットのpickをeditに変更して保存・終了します
 editはコミットを変更するためのコマンドで、リベースが一旦止まりコミットに変更を加えることができます。
@@ -289,20 +291,20 @@ git rebase --continue
 複数のコミットをeditで変更する場合
 コミット内容を変更 → git commit --amend → git rebase --continue
 を繰り返すことになります
+```
 
-■複数のコミットをまとめたい
+### 複数のコミットをまとめたい
+```
 git rebase -i HEAD~2
 pick -> squashにして保存
 squashが指示されたコミットは１つ前のコミットとまとめられます。
 保存すると再度エディタが立ち上がり、まとめられて１つになるコミットのコメントを書くことができます。
-
-
 ```
 
 
 ## git pull
+### pullした時に怒られた
 ```
-■pullした時に怒られた
 error: Your local changes to 'admin/data/jyodir.sh' would be overwritten by merge.  Aborting.
 Please, commit your changes or stash them before you can merge.
 
@@ -348,8 +350,8 @@ git rebase --abort
 ```
 
 ## git revert
+### push後、安全にコミットを取り消したい
 ```
-■push後、安全にコミットを取り消したい
 プッシュ後にコミットを取り消す方法は
 git push -f
 git push --force-with-lease
@@ -374,12 +376,22 @@ git revert HEAD~2
 ```
 
 ## git push --force-with-lease
+### push済みコミットの変更を反映したい
 ```
-■push済みコミットの変更を反映したい
 リモートリポジトリにプッシュ済みのコミットを変更・削除した場合
 ほかのユーザが何か新たなコミットをプッシュしてない場合のみ※、リモートブランチを上書きしてくれる
 
 ※ほかのユーザがコミットをプッシュしていた場合は、プッシュはリジェクトされる
 git push -f の場合はこのチェックは行われないため、ほこのユーザーのコミットを削除してしまいます。
+
+※複数のユーザが使用している共有ブランチでの過去のコミットの変更・削除は多くの場合問題を引き起こします。
+自身しか参照していないブランチでのみ行うようにするのがよいでしょう。
+```
+
+## git filter-branch --commit-filter
+### 名前、メールアドレスを変更したい
+```
+
+
 
 ```
