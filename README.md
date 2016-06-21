@@ -469,3 +469,44 @@ git cherry-pick <コミットID>
 これで、カレントブランチに指定したコミットが取り込まれます。
 そのあと、間違えてコミットしていたブランチから、該当するコミットを削除しましょう。
 ```
+
+## git 本家リポジトリをupstreamから最新ソースにする
+
+#### 1. 本家リポジトリをupstreamとしてremote add
+```
+$ git remote add upstream git://github.com/github-book/first-pr
+
+$ git remote -v
+origin	https://github.com/dondoko-susumu/first-pr.git (fetch)
+origin	https://github.com/dondoko-susumu/first-pr.git (push)
+upstream	git://github.com/github-book/first-pr (fetch)
+upstream	git://github.com/github-book/first-pr (push)
+```
+
+#### 2. fetch upstream
+
+```
+$ git fetch upstream
+remote: Counting objects: 20, done.
+remote: Compressing objects: 100% (16/16), done.
+remote: Total 20 (delta 10), reused 12 (delta 4)
+Unpacking objects: 100% (20/20), done.
+From git://github.com/github-book/first-pr
+ * [new branch]      gh-pages   -> upstream/gh-pages
+```
+
+#### 3. merge先のbranchへ移動
+
+```
+$ git branch gh-pages
+```
+
+#### 4. merge
+
+```
+$ git merge upstream/gh-pages
+Updating 02e9685..8c87bff
+Fast-forward
+ index.html | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+```
