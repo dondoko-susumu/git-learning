@@ -510,3 +510,18 @@ Fast-forward
  index.html | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 ```
+
+## No newline at end of file
+
+```
+git diffすると、ファイルの最終行で同じ内容が削除され追加された事になるような±と「No newline at end of file」というメッセージが出る事がある。Vimは最終行に改行を付けるエディタなので、最終行に改行がないファイルをVimで編集すると、これが出ます。
+ファイル末尾に改行を入れるのがPOSIXの流儀と書いてるとこもあったので、Vimに限らずかもしれない。
+```
+
+#### 対応
+```
+vim でファイルを開き、コマンドモードで下記を実行して保存します。
+:set binary noeol
+```
+#### 参考
+[git :: 「No newline at end of fileの対処](http://tm.root-n.com/unix:command:git:operation:no_newline_at_end_of_file)
