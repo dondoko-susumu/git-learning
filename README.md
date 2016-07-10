@@ -1,9 +1,10 @@
-# git チートシート
+# Gitメモ
+自分用のメモ。随時更新
 
 ## 用語
 ```
-ワークツリー：
-インデックス（ステージ領域）：
+ワークツリー：実際に作業をしているディレクトリのこと
+インデックス（ステージ領域）：リポジトリにコミットする準備をするための場所のこと
 ```
 
 ## git init
@@ -523,5 +524,5 @@ git diffすると、ファイルの最終行で同じ内容が削除され追加
 vim でファイルを開き、コマンドモードで下記を実行して保存します。
 :set binary noeol
 ```
-#### 参考
+参考
 [git :: 「No newline at end of fileの対処](http://tm.root-n.com/unix:command:git:operation:no_newline_at_end_of_file)
