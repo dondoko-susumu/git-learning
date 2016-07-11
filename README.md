@@ -533,3 +533,40 @@ vim でファイルを開き、コマンドモードで下記を実行して保�
 :set binary noeol
 ```
 [git :: 「No newline at end of fileの対処](http://tm.root-n.com/unix:command:git:operation:no_newline_at_end_of_file)
+
+## 不要になったリモートブランチを削除する
+
+まずはローカルブランチを削除
+
+```
+$ git branch -d hoge
+Deleted branch hoge (was 57c1b0b).
+```
+
+リモートブランチも削除
+
+```
+$ git push origin :hoge
+To https://xxx.git
+ - [deleted]         hoge
+```
+[Git で不要になったリモートブランチを削除する](http://blog.koogawa.com/entry/2014/03/08/121751)
+[今さら聞けないgit pushコマンド](http://shoma2da.hatenablog.com/entry/2014/03/08/234523)
+
+## リモートブランチをローカルにチェックアウトする
+
+```
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/hoge
+  remotes/origin/master
+```
+
+hogeブランチがローカルにないのでチェックアウトしたい場合。
+
+```
+$ git checkout -b hoge origin/hoge
+```
+
+remotes/ は不要。-b オプションを付けると自動的にそのブランチに切り替わる。
