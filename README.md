@@ -570,3 +570,21 @@ $ git checkout -b hoge origin/hoge
 ```
 
 remotes/ は不要。-b オプションを付けると自動的にそのブランチに切り替わる。
+
+## tracking branch（追跡ブランチ）の削除
+
+`git push ORIGIN-NAME :BRANCH-NAME`でリモートは消せるけど、どうやらローカルにあるtrackingは残ってるようだ。これ消したい。
+
+`git branch -r -d ORIGIN-NAME/BRANCH-NAME`
+
+```
+git branch -a
+* develop
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/develop
+  remotes/origin/feature/hoge
+
+git branch -r -d origin/feature/hoge
+Deleted remote branch origin/feature/hoge (was 691026f).
+```
