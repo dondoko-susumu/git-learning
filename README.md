@@ -327,6 +327,14 @@ squashが指示されたコミットは１つ前のコミットとまとめら�
 保存すると再度エディタが立ち上がり、まとめられて１つになるコミットのコメントを書くことができます。
 ```
 
+### コミットの順序を入れ替える
+```
+これまでのコミットを確認
+git log -n 4 --oneline --reverse
+git rebase -i HEAD~4
+pickの行を入れ替えて保存
+```
+[gitでコミットの順序を入れ替える](http://labs.timedia.co.jp/2010/11/git-reorder-commits.html)
 
 ## git pull
 ### pullした時に怒られた
@@ -524,5 +532,4 @@ git diffすると、ファイルの最終行で同じ内容が削除され追加
 vim でファイルを開き、コマンドモードで下記を実行して保存します。
 :set binary noeol
 ```
-参考
 [git :: 「No newline at end of fileの対処](http://tm.root-n.com/unix:command:git:operation:no_newline_at_end_of_file)
