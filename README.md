@@ -409,9 +409,26 @@ git revert HEAD~2
 
 ```
 
-## git push --force-with-lease
-### push済みコミットの変更を反映したい
+## git push
+### ローカルブランチをリモートに反映する
+
 ```
+git push origin hoge
+
+省略しない書き方
+git push origin hoge:hoge
+
+ローカルのhogeブランチをリモートのhogeブランチにpush！です。
+git push {ローカルのhoge}:{リモートのhoge}
+```
+[今さら聞けないgit pushコマンド](http://shoma2da.hatenablog.com/entry/2014/03/08/234523)
+
+
+### push済みコミットの変更を反映したい  
+```
+git push --force-with-lease
+
+
 リモートリポジトリにプッシュ済みのコミットを変更・削除した場合
 ほかのユーザが何か新たなコミットをプッシュしてない場合のみ※、リモートブランチを上書きしてくれる
 
@@ -421,6 +438,26 @@ git push -f の場合はこのチェックは行われないため、ほこの�
 ※複数のユーザが使用している共有ブランチでの過去のコミットの変更・削除は多くの場合問題を引き起こします。
 自身しか参照していないブランチでのみ行うようにするのがよいでしょう。
 ```
+
+### 不要になったリモートブランチを削除する
+
+まずはローカルブランチを削除
+
+```
+$ git branch -d hoge
+Deleted branch hoge (was 57c1b0b).
+```
+
+リモートブランチも削除
+
+```
+$ git push origin :hoge
+To https://xxx.git
+ - [deleted]         hoge
+```
+[Git で不要になったリモートブランチを削除する](http://blog.koogawa.com/entry/2014/03/08/121751)
+[今さら聞けないgit pushコマンド](http://shoma2da.hatenablog.com/entry/2014/03/08/234523)
+
 
 ## git filter-branch --commit-filter
 ### 名前、メールアドレスを変更したい
@@ -533,25 +570,6 @@ vim でファイルを開き、コマンドモードで下記を実行して保�
 :set binary noeol
 ```
 [git :: 「No newline at end of fileの対処](http://tm.root-n.com/unix:command:git:operation:no_newline_at_end_of_file)
-
-## 不要になったリモートブランチを削除する
-
-まずはローカルブランチを削除
-
-```
-$ git branch -d hoge
-Deleted branch hoge (was 57c1b0b).
-```
-
-リモートブランチも削除
-
-```
-$ git push origin :hoge
-To https://xxx.git
- - [deleted]         hoge
-```
-[Git で不要になったリモートブランチを削除する](http://blog.koogawa.com/entry/2014/03/08/121751)
-[今さら聞けないgit pushコマンド](http://shoma2da.hatenablog.com/entry/2014/03/08/234523)
 
 ## リモートブランチをローカルにチェックアウトする
 
