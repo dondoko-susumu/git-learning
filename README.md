@@ -606,3 +606,36 @@ git branch -a
 git branch -r -d origin/feature/hoge
 Deleted remote branch origin/feature/hoge (was 691026f).
 ```
+
+## git stash
+
+```
+退避
+$ git stash <save>
+```
+
+```
+ストックの確認
+$ git stash list
+ stash@{0}: WIP on sub: a0d2f1b add fourth line
+ stash@{1}: WIP on sub: 1a61919 add second line
+
+<stash名>: WIP on <stashを行ったブランチ名>: <ハッシュ> <コミットコメント>
+```
+
+```
+ストックから復活
+$ git stash apply stash@{0}
+```
+
+```
+ストックの復活（勝手にマージする）
+$ git stash pop stash@{0}
+```
+
+```
+ストックの削除
+$ git stash drop <消したいstash名>
+```
+
+[変更を一時的に退避！キメろgit stash](http://qiita.com/fukajun/items/41288806e4733cb9c342)
