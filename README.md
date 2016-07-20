@@ -256,6 +256,25 @@ git branch -r --no-merged origin/master
 git merge --no-ff feature-A
 ```
 
+### マージ時のコンフリクトで片側の変更だけ適用する方法
+`checkout --ours` と `checkout --theirs` を使い分ければ良い。
+
+```
+# ２つのブランチ間でコンフリクトしているファイル fileA.txt と fileB.txt があるとする
+
+# fileA.txt を現在チェックアウトしているブランチ側の対応に合わせる場合
+$ git checkout --ours fileA.txt
+$ git add fileA.txt    # add を忘れずに
+
+# fileB.txt をマージさせたブランチ側に合わせる場合
+$ git checkout --theirs fileB.txt
+$ git add fileB.txt
+
+$ git commit
+```
+
+[[git]マージ時のコンフリクトで片側の変更だけ適用する方法](http://qiita.com/nantekkotai/items/2ed17c3d774211d234a4)
+
 ## git rebase
 
 ```
