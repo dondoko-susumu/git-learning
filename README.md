@@ -246,12 +246,23 @@ git bisect reset
 git branch
 ```
 ### どのブランチがマージされているのかを知りたい
-```
-■リモートのmasterブランチにマージされているリモートブランチの一覧を表示できます。
-git branch -r --merged origin/master
 
-■リモートのmasterブランチにまだマージされてないリモートブランチの一覧を表示できます。
+リモートのmasterブランチにマージされているリモートブランチの一覧を表示できます。
+
+```
+git branch -r --merged origin/master
+```
+
+リモートのmasterブランチにまだマージされてないリモートブランチの一覧を表示できます。
+
+```
 git branch -r --no-merged origin/master
+```
+
+### ブランチ名の変更
+
+```
+git branch -m <oldbranch> <newbranch>
 ```
 
 ## git merge
