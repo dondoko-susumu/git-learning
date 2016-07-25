@@ -554,6 +554,44 @@ To https://xxx.git
 [今さら聞けないgit pushコマンド](http://shoma2da.hatenablog.com/entry/2014/03/08/234523)
 
 
+### tracking branch（追跡ブランチ）の削除
+
+`git push ORIGIN-NAME :BRANCH-NAME`でリモートは消せるけど、どうやらローカルにあるtrackingは残ってるようだ。これ消したい。
+
+`git branch -r -d ORIGIN-NAME/BRANCH-NAME`
+
+```
+git branch -a
+* develop
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/develop
+  remotes/origin/feature/hoge
+
+git branch -r -d origin/feature/hoge
+Deleted remote branch origin/feature/hoge (was 691026f).
+```
+
+### git fetch --prune
+リモートで消されたブランチが手元で残ってしまう件を解消する
+`git fetch`もしくは`git pull`に`--prune`オプションをつける
+`--prune`オプションをつけると、fetchやpullする際に自動的にリモートで削除されているリモートブランチを削除してくれる。
+
+```
+$ git fetch --prune
+ x [deleted]         (none)     -> origin/hoge
+```
+
+または、git remote pruneを実行する
+
+```
+$ git remote prune origin
+ x [deleted]         (none)     -> origin/hoge
+```
+
+[リモートで消されたブランチが手元で残ってしまう件を解消する](http://qiita.com/yuichielectric/items/84cd61915a1236f19221)
+
+
 ## git filter-branch --commit-filter
 ### 名前、メールアドレスを変更したい
 `git filter-branch --commit-filter`は、すべてのコミットに対して何らかの処理を行いたい場合に使用します。
@@ -685,24 +723,6 @@ $ git checkout -b hoge origin/hoge
 ```
 
 remotes/ は不要。-b オプションを付けると自動的にそのブランチに切り替わる。
-
-## tracking branch（追跡ブランチ）の削除
-
-`git push ORIGIN-NAME :BRANCH-NAME`でリモートは消せるけど、どうやらローカルにあるtrackingは残ってるようだ。これ消したい。
-
-`git branch -r -d ORIGIN-NAME/BRANCH-NAME`
-
-```
-git branch -a
-* develop
-  master
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/develop
-  remotes/origin/feature/hoge
-
-git branch -r -d origin/feature/hoge
-Deleted remote branch origin/feature/hoge (was 691026f).
-```
 
 ## git stash
 
