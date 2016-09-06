@@ -15,6 +15,34 @@ git init
 git --bare init --shared
 ```
 
+## バージョン確認
+
+```bash
+git --version
+```
+
+## git config
+
+確認
+
+```bash
+git config --list
+git config キー名
+```
+
+登録・更新
+
+```bash
+git config キー名 設定値 # ローカルリポジトリに設定
+git config --global キー名 設定値 # すべてのローカルリポジトリに設定
+```
+
+削除
+
+```bash
+git config --unset キー名
+```
+
 ## git add
 ```
 ■deletedをaddする
@@ -201,7 +229,7 @@ git diff <file>
 git diff HEAD <file>
 
 # ステージング（インデックス）とコミットのdiff
-git diff --chached
+git diff --cached
 
 # コミット間のDiff
 git diff <比較元コミット> <比較先コミット>
