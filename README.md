@@ -75,15 +75,18 @@ git commit --amend
 ```
 
 ## git checkout
+
 ```
-■ローカルの変更を元に戻すには
-まだaddすらしていない状態だけど、行った変更を取り消したい。
+# ローカルの変更を元に戻す
+# まだaddすらしていない状態だけど、行った変更を取り消したい。
 git checkout ファイル名
 git checkout .
 
-[参考]
-http://keyamb.hatenablog.com/entry/2013/02/08/105556
+# 特定のファイルを、あるコミットの時の状態に戻す
+git checkout コミット番号 ファイル名
+
 ```
+http://keyamb.hatenablog.com/entry/2013/02/08/105556
 
 ## git reset
 ### インデックスへの登録を取りやめたい（git addの反対）
