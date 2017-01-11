@@ -223,6 +223,12 @@ git log --author <検索したい名前>
 git log -S "if (a="
 ```
 
+## git log ワンライナーで指定期間のコミット回数を取得
+
+```
+git log --since=2016-06-01 --until=2016-12-31 --oneline --author='Ken Kubota' --no-merges | wc -l
+```
+
 ## git diff
 
 ```
