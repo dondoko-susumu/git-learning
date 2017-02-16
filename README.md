@@ -315,6 +315,17 @@ git branch -r --no-merged origin/master
 git branch -m <oldbranch> <newbranch>
 ```
 
+### Gitでブランチを作るのを忘れてmasterにコミットしてしまったときの対処法
+
+```
+git checkout -b foo
+git checkout master
+git reset origin/master --hard
+```
+
+cherry-pickでの対処法
+[Gitでブランチを作るのを忘れてmasterにコミットしてしまったときの対処法](http://qiita.com/atskimura/items/a90dfa8bfc72e3657ef9)
+
 ## git merge
 
 ```
