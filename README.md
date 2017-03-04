@@ -45,23 +45,27 @@ git config --unset キー名
 ```
 
 ## git add
-```
-■deletedをaddする
-git add -u
 
-■ファイル名を大文字⇔小文字で変更したらgitに反映されない
-対応方法
+### deletedをaddする
+
+```
+git add -u
+```
+
+### ファイル名を大文字⇔小文字で変更したらgitに反映されない
+
+```
 git mv(リネーム)を２回する
 
 git mv kaisetsu.php _Kaisetsu.php
 git mv _Kaisetsu.php Kaisetsu.php
 
 http://ratememo.blog17.fc2.com/blog-entry-989.html
+```
 
-■.gitignoreを変更したのに反映されない場合の対処法
-[参考]
-http://alice345.hatenablog.com/entry/2013/09/07/001519
+### .gitignoreを変更したのに反映されない場合の対処法
 
+```
 既にコミットしたファイルを管理対象外にしたいとき
 .gitignoreに追加するが管理対象外にならない。
 
