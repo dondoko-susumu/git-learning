@@ -183,6 +183,36 @@ git reset --hard HEAD
 git reset --hard ORIG_HEAD
 ```
 
+### １つ前のコミットで動作を確認したい(※)
+
+```
+git reset --hard HEAD~
+```
+
+--hardなので、「インデックス・ワーキングツリー」も1つ前のコミットの状態に戻る。
+
+### 過去のコミットで動作を確認したい(※)
+
+```
+git reset --hard 戻したいコミットのハッシュ値
+```
+
+(※)これをやる前に、pushして置くこと。
+`reset --hard`は基本的にすべて消えるので慎重に。
+一応復活させる術はなくはない。
+remoteに最新の状態を記録しておけば、ローカルは好きな所に移動しても安心。
+動作確認後、最新の状態に戻るには、また、
+
+```
+git reset --hard ORIG_HEAD
+```
+
+をすれば良い。
+
+`git reset --hard ORIG_HEAD`：ORIG_HEADは直前のHEADを表す。resetをなかったことにする。
+`git reset`は未来の状態にも行ける。
+`git reset --hard 最新のコミットのハッシュ値`でも良い。
+
 ### git commit --amendをキャンセルする
 amendによるものはいったんcommitして、次に
 
