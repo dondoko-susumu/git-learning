@@ -1,6 +1,5 @@
 # Gitメモ
 自分用のメモ。随時更新
-（※）手元のGitメモファイルのパスを変更したら、Kobitoとファイル連携されなくなったので、同じ内容で再投稿です。
 
 ## 用語
 ```
@@ -874,4 +873,13 @@ $ git stash drop <消したいstash名>
 |ショートオプション | ロングオプション | 説明 |
 |--------|--------|--------|
 | –-     |        |オプションとファイルを明示的に切り分けます。例えば「-n」という名前のファイルをステージする場合に利用します。|
+
+## bitbucketからGithubに移行
+GitHubにはインポート機能があるのでBitbucketのURLをいれるだけで簡単に移行できる。
+
+[https://import.github.com/](https://import.github.com/)
+
+URLは`https://bitbucket.org/dondoko_susumu/hoge`といったBitbucketのプロジェクトページのURLをいれる。
+
+[BitbucketからGitHubにリポジトリを自動インポートで移行する。](http://final.hateblo.jp/entry/2016/01/16/233135)
 
