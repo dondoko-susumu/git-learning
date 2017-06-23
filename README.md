@@ -868,6 +868,15 @@ $ git stash drop <消したいstash名>
 
 [変更を一時的に退避！キメろgit stash](http://qiita.com/fukajun/items/41288806e4733cb9c342)
 
+#### gitで未追跡（untracked)なファイルもまとめて退避(stash)する
+
+```
+uオプション
+$ git stash -u
+```
+
+[gitで未追跡（untracked)なファイルもまとめて退避(stash)する](http://qiita.com/muran001/items/f5746c518bf663f86a79)
+
 ## オプション
 
 |ショートオプション | ロングオプション | 説明 |
