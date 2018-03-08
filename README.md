@@ -542,15 +542,14 @@ pickの行を入れ替えて保存
 [gitでコミットの順序を入れ替える](http://labs.timedia.co.jp/2010/11/git-reorder-commits.html)
 
 ## git pull
-### pullした時に怒られた
-```
-error: Your local changes to 'admin/data/jyodir.sh' would be overwritten by merge.  Aborting.
-Please, commit your changes or stash them before you can merge.
+### git pullで、ローカルを強制上書きする方法
 
-１つ前のコミットをpullしてなくて
-１つ前のコミットで削除したjyodir.shのファイルが存在するので
-マージしろと怒られている？
-ローカルのjyodir.shを削除して１つ前の
+```
+// 1) リモートの最新を取ってきておいて・・
+git fetch origin master
+
+// 2) ローカルのmasterを、リモート追跡のmasterに強制的に合わせる！
+git reset --hard origin/master
 ```
 
 ## コンフリクト
